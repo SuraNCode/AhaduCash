@@ -3,7 +3,7 @@ import json
 import telebot
 
 ##TOKEN DETAILS
-TOKEN = "TRON"
+TOKEN = "BIRR"
 
 BOT_TOKEN = "5495651633:AAGJbWZkRsreijKQ2KMe6iedJFm2vX3W1sc"
 PAYMENT_CHANNEL = "@AhaduCashPayments" #add payment channel here including the '@' sign
@@ -31,7 +31,7 @@ def menu(id):
     keyboard.row('🆔 አካውንት')
     keyboard.row('🙌🏻 ለመጋበዝ', '🎁 Bonus', '💸 ወጪ ለማድረግ')
     keyboard.row('⚙️ ለመመዝገብ', '📊 የተጠቃሚ ብዛት')
-    bot.send_message(id, "*🏡 እንኮን ወደ Ahadu Cash ቦት በደህና መጣችሁ❤*", parse_mode="Markdown",
+    bot.send_message(id, "*🏡 እንኮን ወደ Ahadu Cash ቦት በደህና መጣችሁ*", parse_mode="Markdown",
                      reply_markup=keyboard)
 
 @bot.message_handler(commands=['start'])
@@ -219,7 +219,7 @@ def send_text(message):
         if (user_id not in bonus.keys()) or (cur_time - bonus[user_id] > 60*60*24):
             data['balance'][(user)] += Daily_bonus
             bot.send_message(
-                user_id, f"Congrats you just received {Daily_bonus} {TOKEN}")
+                user_id, f"እንኳን ደስ ያለዎት ቦነስ አግኝተዋል +{Daily_bonus} {TOKEN}")
             bonus[user_id] = cur_time
             json.dump(data, open('users.json', 'w'))
         else:
@@ -270,7 +270,7 @@ def trx_address(message):
    try:
     if message.text == "🚫 Cancel":
         return menu(message.chat.id)
-    if len(message.text) == 34:
+    if len(message.text) == 10:
         user_id = message.chat.id
         user = str(user_id)
         data = json.load(open('users.json', 'r'))
